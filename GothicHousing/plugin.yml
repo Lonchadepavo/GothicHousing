@@ -1,0 +1,15 @@
+name: GothicHousing
+main: com.loncha.gothichousing.Main
+version: 0.1
+commands:
+   miscasas:
+      description: Muestra las casas que tienes en propiedad.
+      usage: /miscasas
+   setcampamento:
+      description: Crea un nuevo campamento.
+      usage: /setcampamento <nombre>
+permissions:
+   ghousing.admin:
+      description: Permisos de admin para Gothic Housing
+      default: op
+      
