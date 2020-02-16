@@ -23,6 +23,7 @@ public class Main extends JavaPlugin implements Listener {
 	MisCasas mCasas;
 	InterfazHousing iHousing;
 	SetCampamento sCampamento;
+	EcharInquilinos eInq;
 	
 	public static String[] listaPrefijosBarrios = {"cviejopobre", "cviejoentrada", "cviejoarena", "cviejorico", "cviejomercado"};
 	public static String[] listaPrefijosAsentamientos = {"cviejo"};
@@ -41,6 +42,7 @@ public class Main extends JavaPlugin implements Listener {
 		//Lista de comandos
 		getCommand("miscasas").setExecutor(new MisCasas(this));
 		getCommand("setcampamento").setExecutor(sCampamento = new SetCampamento());
+		getCommand("echarinquilino").setExecutor(eInq = new EcharInquilinos());
 		
 		File f = new File("plugins/GothicHousing");
 		

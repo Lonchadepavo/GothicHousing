@@ -151,9 +151,11 @@ public class ControladorCasas implements Listener{
 			for(UUID owner : owners) {
 				Player tempowner = Bukkit.getPlayer(owner);
 				
-				if (tempowner.getUniqueId().equals(p.getUniqueId())) {
-					if (rg.getId().startsWith(prefijo)) {
-						return true;
+				if (tempowner != null) {
+					if (tempowner.getUniqueId().equals(p.getUniqueId())) {
+						if (rg.getId().startsWith(prefijo)) {
+							return true;
+						}
 					}
 				}
 			}
