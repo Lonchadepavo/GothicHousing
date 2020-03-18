@@ -42,10 +42,8 @@ public class InterfazCasa {
 		int contadorHueco = 0;
 		
 		for (Player p : Bukkit.getOnlinePlayers()) {
-			//if (!p.getDisplayName().equals(owner.getDisplayName())) {
-				createDisplay(Material.PUMPKIN, invInvitarMiembro, contadorHueco, p.getDisplayName(),"");
-				contadorHueco++;
-			//}	
+			createDisplay(Material.PUMPKIN, invInvitarMiembro, contadorHueco, p.getDisplayName(),"");
+			contadorHueco++;
 		}
 		
 		owner.openInventory(invInvitarMiembro);
@@ -59,10 +57,9 @@ public class InterfazCasa {
 		
 		for (UUID member : members) {
 			Player p = Bukkit.getPlayer(member);
-			//if (!p.getDisplayName().equals(owner.getDisplayName())) {
-				createDisplay(Material.PUMPKIN, invEcharMiembro, contadorHueco, p.getDisplayName(),"");
-				contadorHueco++;
-			//}	
+			
+			createDisplay(Material.PUMPKIN, invEcharMiembro, contadorHueco, p.getDisplayName(),"");
+			contadorHueco++;
 		}
 		
 		owner.openInventory(invEcharMiembro);

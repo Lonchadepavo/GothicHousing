@@ -46,14 +46,12 @@ public class InterfazHousing implements CommandExecutor {
 	
 	public static void mostrarInventarioCasas(Player p, String asentamiento) {
 		arrayCasas = new ArrayList<ProtectedRegion>();
-		//arrayCasas = m.getRegionsCasas("cviejopobre", p.getWorld());
 		
-		for (String prefijoBarrio : Main.listaPrefijosBarrios) {
-			if (prefijoBarrio.startsWith(asentamiento)) {
+		for (String prefijoBarrio : Main.listaPrefijosAsentamientos) {
+			if (prefijoBarrio.equals(asentamiento)) {
 				ArrayList<ProtectedRegion> arrayCasasTemp = m.getRegionsCasas(prefijoBarrio, p.getWorld());
 				
 				if (arrayCasasTemp.size() > 0) {
-					System.out.println(arrayCasasTemp);
 					for (ProtectedRegion rgTemp : arrayCasasTemp) {
 						arrayCasas.add(rgTemp);
 					}
@@ -61,15 +59,50 @@ public class InterfazHousing implements CommandExecutor {
 			}
 		}
 		
-		System.out.println(arrayCasas);
-		invCasas = Bukkit.createInventory(p, 27, "Casas");
+		int numHuecos = 27;
+		
+		if (arrayCasas.size() > 27) {
+			numHuecos = 90;
+		}
+		
+		invCasas = Bukkit.createInventory(p, numHuecos, "Casas");
+		/*
+		for (int i = 0; i < arrayCasas.size(); i++) {
+			if (i+1 < arrayCasas.size()) {
+				int nombreCasa = Integer.valueOf(arrayCasas.get(i).getId().replaceAll("\\D+", ""));
+				int nombreCasa2 = Integer.valueOf(arrayCasas.get(i+1).getId().replaceAll("\\D+", ""));
+				
+				if (nombreCasa > nombreCasa2) {
+					ProtectedRegion temp = arrayCasas.get(i);
+					arrayCasas.set(i, arrayCasas.get(i+1));
+					arrayCasas.set(i+1, temp);
+				}
+			}
+		}*/
+		
+		for (int i = 0; i < arrayCasas.size(); i++) {
+			for (int k = 0; k < arrayCasas.size()-i-1; k++) {
+				int nombreCasa = Integer.valueOf(arrayCasas.get(k).getId().replaceAll("\\D+", ""));
+				int nombreCasa2 = Integer.valueOf(arrayCasas.get(k+1).getId().replaceAll("\\D+", ""));
+				
+				if (nombreCasa > nombreCasa2) {
+					ProtectedRegion temp = arrayCasas.get(k);
+					arrayCasas.set(k, arrayCasas.get(k+1));
+					arrayCasas.set(k+1, temp);
+				}
+			}
+		}
+		
+		for (ProtectedRegion rg : arrayCasas) {
+			System.out.println(rg.getId().replaceAll("\\D+", ""));
+		}
 		
 		for(ProtectedRegion rg : arrayCasas) {
 			Boolean bolOcupada = rg.hasMembersOrOwners();
 			
 			String nombreCasaSaved = rg.getId();
 			String nombreCasa = nombreCasaSaved.replaceAll("\\D+", "");
-			System.out.println(nombreCasa.replaceAll("\\D+", ""));
+
 			Set<UUID> ddOwner = rg.getOwners().getUniqueIds();
 			
 			String idOwner = "";

@@ -28,20 +28,22 @@ public class ControladorCasas implements Listener{
 				for (ProtectedRegion rg : InterfazHousing.arrayCasas) {
 					String nombreCasa = rg.getId();
 					
-					for (String prefijo : Main.listaPrefijosBarrios) {
-						String nombreclick = prefijo+"_"+clicked.getItemMeta().getDisplayName();
-						if (nombreclick.equals(nombreCasa)) {
-							if (clicked.getType() == Material.EMERALD_BLOCK) {
-								if (!comprobarCasas(p,prefijo)) {
-									DefaultDomain dd = rg.getOwners();
-									dd.addPlayer(p.getUniqueId());
-									rg.setOwners(dd);
+					for (String prefijo : Main.listaPrefijosAsentamientos) {
+						if (clicked.hasItemMeta()) {
+							String nombreclick = prefijo+"_"+clicked.getItemMeta().getDisplayName();
+							if (nombreclick.equals(nombreCasa)) {
+								if (clicked.getType() == Material.EMERALD_BLOCK) {
+									if (!comprobarCasas(p,prefijo)) {
+										DefaultDomain dd = rg.getOwners();
+										dd.addPlayer(p.getUniqueId());
+										rg.setOwners(dd);
+										
+										recargarInventarios();
+									} else {
+										p.sendMessage("Solo puedes tener alquilada una casa por asentamiento");
+									}
 									
-									recargarInventarios();
-								} else {
-									p.sendMessage("Solo puedes tener alquilada una casa por asentamiento");
 								}
-								
 							}
 						}
 					}
@@ -53,13 +55,15 @@ public class ControladorCasas implements Listener{
 				for (ProtectedRegion rg : InterfazHousing.arrayCasas) {
 					String nombreCasa = rg.getId();
 					
-					for (String prefijo : Main.listaPrefijosBarrios) {
-						String nombreclick = prefijo+"_"+clicked.getItemMeta().getDisplayName();
-						if (nombreclick.equals(nombreCasa)) {
-							ProtectedRegion casaSeleccionada = rg;
-							InterfazCasa casa = new InterfazCasa(rg, p);
-							casa.mostrarInventario();
-							
+					for (String prefijo : Main.listaPrefijosAsentamientos) {
+						if (clicked.hasItemMeta()) {
+							String nombreclick = prefijo+"_"+clicked.getItemMeta().getDisplayName();
+							if (nombreclick.equals(nombreCasa)) {
+								ProtectedRegion casaSeleccionada = rg;
+								InterfazCasa casa = new InterfazCasa(rg, p);
+								casa.mostrarInventario();
+								
+							}
 						}
 					}
 				}
@@ -108,7 +112,7 @@ public class ControladorCasas implements Listener{
 							case "Abandonar casa":
 								for (ProtectedRegion rg : InterfazHousing.arrayCasas) {
 									
-									for (String prefijo : Main.listaPrefijosBarrios) {
+									for (String prefijo : Main.listaPrefijosAsentamientos) {
 										String nombreCasa = prefijo+"_"+inventory.getTitle();
 										if (nombreCasa.equals(rg.getId())) {
 											DefaultDomain owners = rg.getOwners();
@@ -126,7 +130,6 @@ public class ControladorCasas implements Listener{
 								break;
 							
 							default:
-								System.out.println("entra");
 								break;
 						}
 					}

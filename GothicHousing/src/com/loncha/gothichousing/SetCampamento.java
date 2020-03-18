@@ -31,7 +31,6 @@ public class SetCampamento implements CommandExecutor, Plugin{
 
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-		System.out.println("entra");
 		Player p = (Player) arg0;
 		if (arg1.getName().equals("setcampamento")) {
 			if (p.hasPermission("ghousing.admin")) {
@@ -72,10 +71,7 @@ public class SetCampamento implements CommandExecutor, Plugin{
 		try {
 			if (!f.exists()) {
 				f.createNewFile();
-				System.out.println("creado");
 
-			} else {
-				System.out.println("existe");
 			}
 			//Nombre x y z
 			String datos[] = {nombre, String.valueOf(b.getX()), String.valueOf(b.getY()), String.valueOf(b.getZ())};
@@ -87,6 +83,9 @@ public class SetCampamento implements CommandExecutor, Plugin{
 				bw.write(dato+" ");
 			}
 			bw.newLine();
+			
+			bw.close();
+			fw.close();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -105,6 +104,7 @@ public class SetCampamento implements CommandExecutor, Plugin{
 				
 				String line;
 				while((line = br.readLine()) != null) {
+					System.out.println("entra");
 					String[] datos = line.split(" ");
 					
 					String nombre = datos[0];

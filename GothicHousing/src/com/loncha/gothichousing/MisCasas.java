@@ -47,7 +47,7 @@ public class MisCasas implements CommandExecutor {
 	public static void mostrarMisCasas(Player p) {
 		ArrayList<ProtectedRegion> casasOwner = new ArrayList<ProtectedRegion>();
 		
-		for (String prefijo : Main.listaPrefijosBarrios) {
+		for (String prefijo : Main.listaPrefijosAsentamientos) {
 			ArrayList<ProtectedRegion> tempCasas = m.getRegionsCasas(prefijo, p.getWorld());
 
 			for (ProtectedRegion casa : tempCasas) {
