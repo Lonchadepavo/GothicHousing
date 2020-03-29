@@ -66,19 +66,6 @@ public class InterfazHousing implements CommandExecutor {
 		}
 		
 		invCasas = Bukkit.createInventory(p, numHuecos, "Casas");
-		/*
-		for (int i = 0; i < arrayCasas.size(); i++) {
-			if (i+1 < arrayCasas.size()) {
-				int nombreCasa = Integer.valueOf(arrayCasas.get(i).getId().replaceAll("\\D+", ""));
-				int nombreCasa2 = Integer.valueOf(arrayCasas.get(i+1).getId().replaceAll("\\D+", ""));
-				
-				if (nombreCasa > nombreCasa2) {
-					ProtectedRegion temp = arrayCasas.get(i);
-					arrayCasas.set(i, arrayCasas.get(i+1));
-					arrayCasas.set(i+1, temp);
-				}
-			}
-		}*/
 		
 		for (int i = 0; i < arrayCasas.size(); i++) {
 			for (int k = 0; k < arrayCasas.size()-i-1; k++) {
@@ -91,10 +78,6 @@ public class InterfazHousing implements CommandExecutor {
 					arrayCasas.set(k+1, temp);
 				}
 			}
-		}
-		
-		for (ProtectedRegion rg : arrayCasas) {
-			System.out.println(rg.getId().replaceAll("\\D+", ""));
 		}
 		
 		for(ProtectedRegion rg : arrayCasas) {

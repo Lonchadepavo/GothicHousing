@@ -10,17 +10,31 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
 
-public class EcharInquilinos implements CommandExecutor, Plugin {
+public class CargarBloques implements CommandExecutor, Plugin {
+	SetCampamento sCampamento;
+	
+	public CargarBloques(SetCampamento sCampamento) {
+		this.sCampamento = sCampamento;
+	}
 
 	@Override
-	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
+		Player p = (Player) arg0;
+		
+		if (arg1.getName().equals("cargarbloques")) {
+			if (p.hasPermission("ghousing.admin")) {
+				System.out.println("entracomando");
+				sCampamento.cargarBloqueCampamento();
+				return true;
+			}
+		}
+		return false;
 	}
 
 	@Override
@@ -138,9 +152,9 @@ public class EcharInquilinos implements CommandExecutor, Plugin {
 	}
 
 	@Override
-	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
+	public List<String> onTabComplete(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
 
 }

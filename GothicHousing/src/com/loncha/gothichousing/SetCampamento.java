@@ -96,20 +96,25 @@ public class SetCampamento implements CommandExecutor, Plugin{
 	public void cargarBloqueCampamento() {
 		String rutaArchivo = "plugins/GothicHousing/localizacion.txt";
 		File f = new File(rutaArchivo);
-		
+		System.out.println("entra0");
 		try {
 			if (f.exists()) {
+				System.out.println("entra1");
 				FileReader fr = new FileReader(f);
 				BufferedReader br = new BufferedReader(fr);
 				
 				String line;
 				while((line = br.readLine()) != null) {
-					System.out.println("entra");
+					System.out.println("entra2");
 					String[] datos = line.split(" ");
 					
 					String nombre = datos[0];
+					for (String s : datos) {
+						System.out.println(s);
+					}
 					Location l = new Location(Bukkit.getWorld("Gothic"), Integer.valueOf(datos[1]), Integer.valueOf(datos[2]), Integer.valueOf(datos[3]));
-					
+					Block b = l.getBlock();
+					System.out.println(b.getType().toString());
 					crearBloqueCampamento(l, nombre, false);
 				}
 				

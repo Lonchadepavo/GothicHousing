@@ -38,7 +38,7 @@ public class ControladorCasas implements Listener{
 										dd.addPlayer(p.getUniqueId());
 										rg.setOwners(dd);
 										
-										recargarInventarios();
+										recargarInventarios(prefijo);
 									} else {
 										p.sendMessage("Solo puedes tener alquilada una casa por asentamiento");
 									}
@@ -138,10 +138,10 @@ public class ControladorCasas implements Listener{
 		}
 	}
 	
-	public void recargarInventarios() {
+	public void recargarInventarios(String prefijo) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.getOpenInventory().getTitle().equals("Casas")) {
-				InterfazHousing.mostrarInventarioCasas(p, "cviejo");	
+				InterfazHousing.mostrarInventarioCasas(p, prefijo);	
 			}
 		}
 	}

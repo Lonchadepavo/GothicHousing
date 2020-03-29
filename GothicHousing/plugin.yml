@@ -1,6 +1,7 @@
 name: GothicHousing
 main: com.loncha.gothichousing.Main
 version: 0.1
+load: POSTWORLD
 commands:
    miscasas:
       description: Muestra las casas que tienes en propiedad.
@@ -8,6 +9,9 @@ commands:
    setcampamento:
       description: Crea un nuevo campamento.
       usage: /setcampamento <nombre>
+   cargarbloques:
+      description: Carga los bloques del campamento
+      usage: /cargarbloques
 permissions:
    ghousing.admin:
       description: Permisos de admin para Gothic Housing

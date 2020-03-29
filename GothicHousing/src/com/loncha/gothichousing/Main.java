@@ -23,16 +23,18 @@ public class Main extends JavaPlugin implements Listener {
 	MisCasas mCasas;
 	InterfazHousing iHousing;
 	SetCampamento sCampamento;
+	CargarBloques cargBloques;
 	
 	public static String[] listaPrefijosBarrios = {"cviejopobre", "cviejoentrada", "cviejoarena", "cviejorico", "cviejomercado"};
-	public static String[] listaPrefijosAsentamientos = {"cviejo"};
-	public static String[] listaBloques = {"cviejo"};
+	public static String[] listaPrefijosAsentamientos = {"cviejo", "tienda"};
+	public static String[] listaBloques = {"cviejo","tienda"};
 	
 	@Override
 	public void onEnable() {
 		cCasas = new ControladorCasas();
 		cBloques = new ControladorBloques();
 		iHousing = new InterfazHousing(this);
+		CargarBloques cargBloques;
 		
 		getServer().getPluginManager().registerEvents(this, this);
 		getServer().getPluginManager().registerEvents(this.cCasas, this);
@@ -41,6 +43,7 @@ public class Main extends JavaPlugin implements Listener {
 		//Lista de comandos
 		getCommand("miscasas").setExecutor(new MisCasas(this));
 		getCommand("setcampamento").setExecutor(sCampamento = new SetCampamento());
+		getCommand("cargarbloques").setExecutor(cargBloques = new CargarBloques(sCampamento));
 		
 		File f = new File("plugins/GothicHousing");
 		
@@ -48,7 +51,7 @@ public class Main extends JavaPlugin implements Listener {
 			f.mkdir();
 		}
 		
-		sCampamento.cargarBloqueCampamento();
+		//sCampamento.cargarBloqueCampamento();
 	}
 
 	public ArrayList<ProtectedRegion> getRegionsCasas(String prefix, World w) {
