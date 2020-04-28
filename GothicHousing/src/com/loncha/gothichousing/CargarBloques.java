@@ -25,14 +25,18 @@ public class CargarBloques implements CommandExecutor, Plugin {
 
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
-		Player p = (Player) arg0;
-		
-		if (arg1.getName().equals("cargarbloques")) {
-			if (p.hasPermission("ghousing.admin")) {
-				System.out.println("entracomando");
-				sCampamento.cargarBloqueCampamento();
-				return true;
+		if (arg0 instanceof Player) {
+			Player p = (Player) arg0;
+			
+			if (arg1.getName().equals("cargarbloques")) {
+				if (p.hasPermission("ghousing.admin")) {
+					sCampamento.cargarBloqueCampamento();
+					return true;
+				}
 			}
+		} else {
+			sCampamento.cargarBloqueCampamento();
+			return true;
 		}
 		return false;
 	}

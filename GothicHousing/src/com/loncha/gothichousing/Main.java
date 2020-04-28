@@ -50,8 +50,12 @@ public class Main extends JavaPlugin implements Listener {
 		if (!f.exists()) {
 			f.mkdir();
 		}
-		
-		//sCampamento.cargarBloqueCampamento();
+
+	}
+	
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent e) {
+		getServer().dispatchCommand(getServer().getConsoleSender(), "cargarbloques");
 	}
 
 	public ArrayList<ProtectedRegion> getRegionsCasas(String prefix, World w) {

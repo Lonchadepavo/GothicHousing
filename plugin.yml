@@ -1,7 +1,6 @@
 name: GothicHousing
 main: com.loncha.gothichousing.Main
 version: 0.1
-load: POSTWORLD
 commands:
    miscasas:
       description: Muestra las casas que tienes en propiedad.
