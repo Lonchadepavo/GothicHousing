@@ -22,7 +22,8 @@ public class CargarBloques implements CommandExecutor, Plugin {
 	public CargarBloques(SetCampamento sCampamento) {
 		this.sCampamento = sCampamento;
 	}
-
+	
+	//Comando que carga los bloques de housing.
 	@Override
 	public boolean onCommand(CommandSender arg0, Command arg1, String arg2, String[] arg3) {
 		if (arg0 instanceof Player) {

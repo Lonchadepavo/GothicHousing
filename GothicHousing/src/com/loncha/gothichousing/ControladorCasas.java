@@ -16,6 +16,8 @@ import com.sk89q.worldguard.domains.DefaultDomain;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
 public class ControladorCasas implements Listener{
+	
+	//Evento que detecta el click en un inventario (interfaz en este caso)
 	@EventHandler
 	public void onInventoryClick(InventoryClickEvent event) {
 		
@@ -96,6 +98,7 @@ public class ControladorCasas implements Listener{
 				break;
 			
 			default:
+				//Opciones de gestión de tu casa (puedes invitar, echar y abandonar)
 				if (clicked != null) {
 					if (clicked.hasItemMeta()) {
 						switch(clicked.getItemMeta().getDisplayName()) {
@@ -138,6 +141,7 @@ public class ControladorCasas implements Listener{
 		}
 	}
 	
+	//Método que recarga la interfaz cuando se produce algún cambio en ella
 	public void recargarInventarios(String prefijo) {
 		for (Player p : Bukkit.getOnlinePlayers()) {
 			if (p.getOpenInventory().getTitle().equals("Casas")) {
