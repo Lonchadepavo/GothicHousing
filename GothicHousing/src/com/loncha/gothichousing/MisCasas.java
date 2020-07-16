@@ -76,9 +76,15 @@ public class MisCasas implements CommandExecutor {
 			
 			for (UUID ownerId : ddOwner) {
 				Player member = Bukkit.getPlayer(ownerId);
-				idMember = member.getDisplayName();
-				String frase = "Miembro: " + idMember;
-				descripcion.add(frase);
+				if (member != null) {
+					if (member.isOnline()) {
+						idMember = member.getDisplayName();
+					} else {
+						idMember= member.getName();
+					}
+					String frase = "Miembro: " + idMember;
+					descripcion.add(frase);
+				}
 			}
 			ItemStack casa = new ItemStack(Material.EMERALD_BLOCK);;
 			

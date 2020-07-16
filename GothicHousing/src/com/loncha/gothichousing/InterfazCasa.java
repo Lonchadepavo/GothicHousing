@@ -58,8 +58,16 @@ public class InterfazCasa {
 		for (UUID member : members) {
 			Player p = Bukkit.getPlayer(member);
 			
-			createDisplay(Material.PUMPKIN, invEcharMiembro, contadorHueco, p.getDisplayName(),"");
-			contadorHueco++;
+			if (p != null) {
+				String nombrePlayer = p.getName();
+				
+				if (p.isOnline()) {
+					nombrePlayer = p.getDisplayName();
+				}
+				
+				createDisplay(Material.PUMPKIN, invEcharMiembro, contadorHueco, nombrePlayer,"");
+				contadorHueco++;
+			}
 		}
 		
 		owner.openInventory(invEcharMiembro);
